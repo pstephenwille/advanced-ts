@@ -4,13 +4,16 @@ interface Admin {
 }
 interface User {
   email: string;
+  woot:string;
+  ugh:string;
 }
 
 function redirect(usr: Admin | User) {
   if ((<Admin>usr).role !== undefined) {
     // won't work: usr is still Admin | User
   }
-  if ("role" in usr) {
+
+  if ('role' in usr) {
     routeToAdminPage(usr.role);
   } else {
     routeToHomePage(usr.email);
@@ -22,5 +25,5 @@ function isAdmin(usr: Admin | User): usr is Admin {
   return (<Admin>usr).role !== undefined;
 }
 
-declare function routeToAdminPage(role: string);
+declare function routeToAdminPage(role: string):string;
 declare function routeToHomePage(id: string);
